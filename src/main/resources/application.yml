@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: cashi-challenge
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/project
+    username: project
+    password: project
