@@ -1,9 +1,7 @@
-package com.cashi.cashichallenge.transaction
+package com.cashi.cashichallenge.fee
 
-import com.cashi.cashichallenge.fee.Fee
 import com.cashi.cashichallenge.common.enums.Asset
-import com.cashi.cashichallenge.common.enums.AssetType
-import com.cashi.cashichallenge.common.enums.TransactionType
+import com.cashi.cashichallenge.transaction.Transaction
 import jakarta.persistence.*
 import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.annotation.CreatedDate
@@ -11,14 +9,15 @@ import java.math.BigDecimal
 import java.time.OffsetDateTime
 
 @Entity
-@Table(name = "transaction")
-class Transaction(
+@Table(name = "fee")
+class Fee(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY)
-    val fees: MutableList<Fee> = mutableListOf(),
+    @ManyToOne
+    @Column(nullable = false)
+    val transaction: Transaction,
 
     @Column(nullable = false)
     val amount: BigDecimal,
@@ -27,13 +26,9 @@ class Transaction(
     val asset: Asset,
 
     @Column(nullable = false)
-    val assetType: AssetType,
+    val rate: BigDecimal,
 
-    @Column(nullable = false)
-    val type: TransactionType,
-
-    @Column(nullable = false)
-    var state: TransactionState,
+    val type: FeeType,
 
     @Column(nullable = false)
     @CreatedDate
@@ -44,6 +39,6 @@ class Transaction(
     val updatedAt: OffsetDateTime = OffsetDateTime.now()
 )
 
-enum class TransactionState {
-    SettledPendingFee, Charged
+enum class FeeType {
+    Standard, Commission
 }

@@ -14,4 +14,15 @@ class TransactionService(val transactionRepository: TransactionRepository) {
     fun findById(id: Long): Transaction {
         return transactionRepository.findByIdOrNull(id) ?: throw DataNotFoundException("Transaction(id=$id) not found.")
     }
+
+    fun findTransactionWithPendingFees(id: Long): Transaction? {
+        return transactionRepository.findByIdAndState(id, TransactionState.SettledPendingFee)
+    }
+
+    fun charge(id: Long) {
+        val transaction = findById(id)
+        transaction.state = TransactionState.Charged
+
+        transactionRepository.save(transaction)
+    }
 }

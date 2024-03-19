@@ -1,8 +1,8 @@
 package com.cashi.cashichallenge.transaction.dto
 
-import com.cashi.cashichallenge.transaction.TransactionType
 import com.cashi.cashichallenge.common.enums.Asset
 import com.cashi.cashichallenge.common.enums.AssetType
+import com.cashi.cashichallenge.common.enums.TransactionType
 import com.cashi.cashichallenge.transaction.Transaction
 import com.cashi.cashichallenge.transaction.TransactionState
 import jakarta.validation.constraints.DecimalMin
