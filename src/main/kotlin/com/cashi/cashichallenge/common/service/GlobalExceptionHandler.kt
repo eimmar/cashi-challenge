@@ -11,9 +11,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
     @ExceptionHandler
-    fun handleNotFoundException(ex: DataNotFoundException) = ResponseEntity.notFound()
+    fun handleNotFoundException(ex: DataNotFoundException): ResponseEntity.HeadersBuilder<*> {
+        println(ex.message)
+        return ResponseEntity.notFound()
+    }
 
     @ExceptionHandler
-    fun handleHttpClientErrorException(ex: HttpClientErrorException) =
-        ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build<Unit>()
+    fun handleHttpClientErrorException(ex: HttpClientErrorException): ResponseEntity<Unit> {
+        println(ex.message)
+
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build()
+    }
 }
