@@ -17,7 +17,7 @@ class Transaction(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "transaction", cascade = [CascadeType.PERSIST, CascadeType.REMOVE])
     val fees: MutableList<Fee> = mutableListOf(),
 
     @Column(nullable = false)

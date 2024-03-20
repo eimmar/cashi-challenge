@@ -1,15 +1,16 @@
 package com.cashi.cashichallenge.transaction
 
 import com.cashi.cashichallenge.transaction.dto.TransactionDTO
-import com.cashi.cashichallenge.transaction.dto.TransactionRequest
 import com.cashi.cashichallenge.transaction.dto.TransactionPlacedResponse
+import com.cashi.cashichallenge.transaction.dto.TransactionRequest
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
-@RestController("/transaction")
+@RestController
+@RequestMapping("/transaction")
 class TransactionController(val transactionService: TransactionService) {
     @PostMapping
-    fun place(@RequestBody transactionRequest: @Valid TransactionRequest): TransactionPlacedResponse {
+    fun place(@Valid @RequestBody transactionRequest: TransactionRequest): TransactionPlacedResponse {
         val transaction = transactionService.place(transactionRequest)
 
         return TransactionPlacedResponse(transaction.id)

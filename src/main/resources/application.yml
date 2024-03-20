@@ -6,3 +6,6 @@ spring:
     url: jdbc:mysql://localhost:3306/project
     username: project
     password: project
+
+  jpa:
+    generate-ddl: true

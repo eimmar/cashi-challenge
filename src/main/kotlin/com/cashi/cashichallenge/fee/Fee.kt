@@ -16,7 +16,6 @@ class Fee(
     val id: Long = 0,
 
     @ManyToOne
-    @Column(nullable = false)
     val transaction: Transaction,
 
     @Column(nullable = false)

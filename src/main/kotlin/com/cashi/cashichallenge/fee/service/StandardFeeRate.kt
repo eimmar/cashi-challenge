@@ -14,7 +14,7 @@ class StandardFeeRate: FeeRate {
         get() = FeeType.Standard
 
     override val rate: BigDecimal
-        get() = BigDecimal(0.0015)
+        get() = BigDecimal("0.0015")
 
     override fun calculate(amount: BigDecimal): BigDecimal = amount.multiply(rate)
 }
