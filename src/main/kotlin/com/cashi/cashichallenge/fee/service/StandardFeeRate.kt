@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
 @Service
-class StandardFeeRate: FeeRate {
+class StandardFeeRate : FeeRate {
     override val transactionTypes: List<TransactionType>
         get() = listOf(TransactionType.WireTransfer, TransactionType.MobileTopUp)
 

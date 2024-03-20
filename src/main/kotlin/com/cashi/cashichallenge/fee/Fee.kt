@@ -18,13 +18,13 @@ class Fee(
     @ManyToOne
     val transaction: Transaction,
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 38, scale = 4)
     val amount: BigDecimal,
 
     @Column(nullable = false)
     val asset: Asset,
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 4)
     val rate: BigDecimal,
 
     val type: FeeType,

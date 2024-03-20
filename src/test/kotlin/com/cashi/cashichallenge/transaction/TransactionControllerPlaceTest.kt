@@ -47,7 +47,7 @@ class TransactionControllerPlaceTest {
 
         val transaction = transactionRepository.findById(result.body!!.id).orElseThrow()
         assertThat(transaction.state).isEqualTo(TransactionState.SettledPendingFee)
-        assertThat(transaction.amount).isEqualTo(BigDecimal.valueOf(0.01))
+        assertThat(transaction.amount).isEqualTo(BigDecimal("0.0100"))
         assertThat(transaction.asset).isEqualTo(Asset.EUR)
         assertThat(transaction.assetType).isEqualTo(AssetType.FIAT)
         assertThat(transaction.type).isEqualTo(TransactionType.MobileTopUp)

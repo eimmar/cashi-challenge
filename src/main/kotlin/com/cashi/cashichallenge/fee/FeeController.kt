@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*
 class FeeController(val feeCalculationService: FeeCalculationService, val transactionService: TransactionService) {
     @PostMapping("/transaction/{transactionId}/calculate")
     fun calculateFees(@PathVariable transactionId: Long) {
-        transactionService.findTransactionWithPendingFees(transactionId)
-            ?.let { feeCalculationService.calculateFees(it) }
+        transactionService.findTransactionWithPendingFees(transactionId).let(feeCalculationService::calculateFees)
     }
 }

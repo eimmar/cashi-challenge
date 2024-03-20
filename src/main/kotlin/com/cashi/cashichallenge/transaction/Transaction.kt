@@ -20,7 +20,7 @@ class Transaction(
     @OneToMany(mappedBy = "transaction", cascade = [CascadeType.PERSIST, CascadeType.REMOVE])
     val fees: MutableList<Fee> = mutableListOf(),
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 38, scale = 4)
     val amount: BigDecimal,
 
     @Column(nullable = false)
