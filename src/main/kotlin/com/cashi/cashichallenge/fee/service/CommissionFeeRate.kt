@@ -14,7 +14,7 @@ class CommissionFeeRate : FeeRate {
         get() = FeeType.Commission
 
     override val rate: BigDecimal
-        get() = BigDecimal("0.3")
+        get() = BigDecimal("0.03")
 
     override fun calculate(amount: BigDecimal): BigDecimal = maxOf(amount.multiply(rate), BigDecimal("4"))
 }
