@@ -13,3 +13,6 @@ Password: **airflow**
 
 ### Testing
 App can be tested by using Swagger: http://localhost:8090/swagger-ui/index.html
+
+### Tests
+To run tests execute `./gradlew test`

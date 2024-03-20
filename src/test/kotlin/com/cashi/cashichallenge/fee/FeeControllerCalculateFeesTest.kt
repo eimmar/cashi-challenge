@@ -62,7 +62,7 @@ class FeeControllerCalculateFeesTest {
 
         transaction.fees[0].let {
             assertThat(it.amount).isEqualTo(BigDecimal("4.0000"))
-            assertThat(it.rate).isEqualTo(BigDecimal("0.3000"))
+            assertThat(it.rate).isEqualTo(BigDecimal("0.0300"))
             assertThat(it.type).isEqualTo(FeeType.Commission)
         }
 
@@ -92,7 +92,7 @@ class FeeControllerCalculateFeesTest {
 
         transaction.fees[1].let {
             assertThat(it.amount).isEqualTo(BigDecimal("4.0000"))
-            assertThat(it.rate).isEqualTo(BigDecimal("0.3000"))
+            assertThat(it.rate).isEqualTo(BigDecimal("0.0300"))
             assertThat(it.type).isEqualTo(FeeType.Commission)
         }
     }

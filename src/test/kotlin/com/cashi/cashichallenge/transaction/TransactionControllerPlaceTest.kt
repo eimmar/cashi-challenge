@@ -124,6 +124,7 @@ class TransactionControllerPlaceTest {
     private fun mockAirflowSuccess() {
         airflowAPIMock.stubFor(
             post(urlPathEqualTo(airflowUrl))
+                .withBasicAuth("airflow", "airflow")
                 .willReturn(
                     aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -156,6 +157,7 @@ class TransactionControllerPlaceTest {
     private fun mockAirflowError() {
         airflowAPIMock.stubFor(
             post(urlPathEqualTo(airflowUrl))
+                .withBasicAuth("airflow", "airflow")
                 .willReturn(
                     aResponse().withStatus(400)
                         .withHeader("Content-Type", "application/json")
