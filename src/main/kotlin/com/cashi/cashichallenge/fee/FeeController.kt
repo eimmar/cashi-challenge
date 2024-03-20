@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/fee")
-class FeeController(val feeCalculationService: FeeCalculationService, val transactionService: TransactionService) {
+class FeeController(
+    private val feeCalculationService: FeeCalculationService,
+    private val transactionService: TransactionService
+) {
     @PostMapping("/transaction/{transactionId}/calculate")
     fun calculateFees(@PathVariable transactionId: Long) {
         transactionService.findTransactionWithPendingFees(transactionId).let(feeCalculationService::calculateFees)

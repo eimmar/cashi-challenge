@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/transaction")
-class TransactionController(val transactionService: TransactionService) {
+class TransactionController(private val transactionService: TransactionService) {
     @PostMapping
     fun place(@Valid @RequestBody transactionRequest: TransactionRequest): TransactionPlacedResponse {
         val transaction = transactionService.place(transactionRequest)

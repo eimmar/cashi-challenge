@@ -6,7 +6,7 @@ import com.cashi.cashichallenge.transaction.Transaction
 import org.springframework.stereotype.Service
 
 @Service
-class FeeCalculationService(val feeRates: List<FeeRate>, val feeRepository: FeeRepository) {
+class FeeCalculationService(private val feeRates: List<FeeRate>, private val feeRepository: FeeRepository) {
     fun calculateFees(transaction: Transaction) {
         val newFees = feeRates.filter { shouldCalculateFee(it, transaction) }
             .map {

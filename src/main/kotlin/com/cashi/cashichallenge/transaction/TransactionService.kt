@@ -1,14 +1,21 @@
 package com.cashi.cashichallenge.transaction
 
+import com.cashi.cashichallenge.airflow.AirflowClient
 import com.cashi.cashichallenge.common.exception.DataNotFoundException
 import com.cashi.cashichallenge.transaction.dto.TransactionRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class TransactionService(val transactionRepository: TransactionRepository) {
+class TransactionService(
+    private val transactionRepository: TransactionRepository,
+    private val airflowClient: AirflowClient
+) {
     fun place(transactionRequest: TransactionRequest): Transaction {
-        return transactionRepository.save(transactionRequest.toEntity())
+        val transaction = transactionRepository.save(transactionRequest.toEntity())
+        airflowClient.triggerCalculationDAG(transaction.id)
+
+        return transaction
     }
 
     fun findById(id: Long): Transaction {
