@@ -7,6 +7,9 @@
 
 ### Airflow
 You can login to Airflow UI with the following credentials:  
-URL: http://localhost:8090  
+URL: http://localhost:8080  
 Username: **airflow**  
 Password: **airflow**
+
+### Testing
+App can be tested by using Swagger: http://localhost:8090/swagger-ui/index.html
