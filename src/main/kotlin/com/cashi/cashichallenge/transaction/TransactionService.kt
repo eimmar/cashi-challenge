@@ -13,7 +13,7 @@ class TransactionService(
 ) {
     fun place(transactionRequest: TransactionRequest): Transaction {
         val transaction = transactionRepository.save(transactionRequest.toEntity())
-        airflowClient.triggerCalculationDAG(transaction.id)
+        airflowClient.triggerFeeCalculationDAG(transaction.id)
 
         return transaction
     }

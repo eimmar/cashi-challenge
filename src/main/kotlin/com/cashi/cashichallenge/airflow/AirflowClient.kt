@@ -10,14 +10,14 @@ import org.springframework.web.client.RestTemplate
 import java.time.Duration
 
 @Service
-class AirflowClient(@Value("airflow.url") private val url: String) {
+class AirflowClient(@Value("\${airflow.url}") private val url: String) {
     internal val client: RestTemplate = RestTemplateBuilder()
         .setConnectTimeout(Duration.ofSeconds(10))
         .setReadTimeout(Duration.ofSeconds(10))
         .rootUri(url)
         .build()
 
-    fun triggerCalculationDAG(transactionId: Long) {
+    fun triggerFeeCalculationDAG(transactionId: Long) {
         val request = DagExecutionRequest(
             dagRunId = "transaction_${transactionId}_${System.currentTimeMillis()}",
             conf = FeeProcessingRequest(transactionId)

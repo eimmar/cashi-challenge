@@ -1,9 +1,5 @@
 package com.cashi.cashichallenge.airflow.dto
 
-data class DagExecutionResponse(
-    val detail: String,
-    val instance: String?,
-    val status: Int,
-    val title: String,
-    val type: String
-)
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class DagExecutionResponse(@JsonProperty("dag_run_id") val dagRunId: String)
